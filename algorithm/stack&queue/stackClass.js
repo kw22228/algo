@@ -1,32 +1,57 @@
 class Stack {
-    #arr = [];
+    #stack = [];
+    #stackSize;
+    #top = -1;
 
-    constructor(arr) {
-        if (arr) this.#arr = arr;
+    constructor(stackSize) {
+        this.#stackSize = stackSize;
+        if (stackSize) this.#stack = new Array(stackSize).fill(null);
     }
 
-    //기존 배열 복사한 새로운 배열
-    getBuffer() {
-        return this.#arr.slice();
+    push(data) {
+        if (this.isFull()) return 'Stack is Full.';
+
+        this.#top++;
+        this.#stack[this.#top] = data;
+
+        return true;
+    }
+
+    pop() {
+        if (this.isEmpty()) return 'Stack is Empty.';
+
+        this.#stack[this.#top] = null;
+        this.#top--;
+
+        return true;
     }
 
     isEmpty() {
-        return this.#arr.length === 0;
+        return this.#top === -1;
+    }
+
+    isFull() {
+        return this.#top === this.#stackSize - 1;
+    }
+
+    getLog() {
+        return {
+            stack: this.#stack,
+            top: this.#top,
+        };
     }
 }
 
-const stack1 = new Stack();
+const stack = new Stack(5);
 
-function StackAccessNthTopNode(stack, n) {
-    if (n <= 0) throw 'Error';
+stack.push('1');
+stack.push('2');
+stack.push('3');
+stack.push('4');
+stack.push('5');
 
-    const bufferArr = stack.getBuffer();
+stack.pop();
+stack.pop();
+stack.pop();
 
-    const bufferStack = new Stack(bufferArr);
-
-    while (--n !== 0) {
-        bufferStack.pop();
-    }
-
-    return bufferStack.pop();
-}
+console.log(stack.getLog());
