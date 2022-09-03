@@ -50,4 +50,6 @@ q.enqueue('5');
 q.dequeue();
 q.dequeue();
 
+q.enqueue('1');
+
 console.log(q.get());
