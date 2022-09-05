@@ -50,6 +50,15 @@ function solution(bridge_length, weight, truck_weights) {
 
     const bridge = new Array(bridge_length).fill(0);
     let timer = 0;
+    do {
+        timer++;
+        bridge.shift();
+        bridge.reduce((a, b) => a + b) + truck_weights[0] <= weight
+            ? bridge.push(truck_weights.shift())
+            : bridge.push(0);
+    } while (bridge.reduce((a, b) => a + b) !== 0);
+
+    return timer;
 }
 
 console.log(solution(bridge_length, weight, truck_weights));
