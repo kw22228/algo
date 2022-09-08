@@ -11,5 +11,8 @@ binarySearchTree.insert('20');
 binarySearchTree.insert('8');
 binarySearchTree.insert('7');
 binarySearchTree.insert('5');
+binarySearchTree.insert('5');
+binarySearchTree.insert('5');
+binarySearchTree.insert('5');
 
 console.log(binarySearchTree);
