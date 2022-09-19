@@ -7,29 +7,35 @@ let arr = [
 ];
 
 function solution(arr) {
-    let sum = 0;
+    let answer = Number.MIN_SAFE_INTEGER;
+    let n = arr.length;
 
-    //1. 가로 합
-    const answer1 = [];
-    arr.forEach((a, index) => {
-        sum = a.reduce((pre, cur) => pre + cur, 0);
-        answer1.push(sum);
-    });
+    let sumRow = 0;
+    let sumColumn = 0;
 
-    //2. 세로 합
-    const answer2 = Array.from({ length: arr[0].length }, () => Number(0));
-    arr.forEach((a, index) => {
-        a.forEach((n, i) => {
-            answer2[i] += n;
-        });
-    });
+    const row = [];
+    const column = [];
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            sumRow += arr[i][j];
+            sumColumn += arr[j][i];
+        }
 
-    //3, 대각선
-    const answer3 = [];
+        row.push(sumRow);
+        sumRow = 0;
 
-    const answer = [...answer1, ...answer2];
+        column.push(sumColumn);
+        sumColumn = 0;
+    }
 
-    console.log(answer);
+    let sumCross1 = 0;
+    let sumCross2 = 0;
+    for (let i = 0; i < n; i++) {
+        sumCross1 += arr[i][i];
+        sumCross2 += arr[i][n - 1 - i];
+    }
+
+    return Math.max(...row, ...column, sumCross1, sumCross2);
 }
 
 console.log(solution(arr));
