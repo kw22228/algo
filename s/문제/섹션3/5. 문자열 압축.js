@@ -1,9 +1,23 @@
 const str = 'KKHSSSSSSSE';
 
 function solution(str) {
-    let s = '';
-    let n = 0;
-    return str.split('').map((s, i, origin) => {});
+    const answer = [];
+    let c = '';
+    let n = 1;
+
+    str.split('').forEach(s => {
+        if (s === c) {
+            n++;
+            return;
+        }
+
+        if (c && n > 1) answer.push(n);
+        answer.push(s);
+        c = s;
+        n = 1;
+    });
+
+    return answer.join('');
 }
 
 console.log(solution(str));
