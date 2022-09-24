@@ -17,4 +17,12 @@
 
 // console.log(binarySearchTree);
 
-const a = 'a';
+function a(value) {
+    console.log(value);
+}
+
+a('text');
+
+// function b(a) {
+//     a();
+// }
